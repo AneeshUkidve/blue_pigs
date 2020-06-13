@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <body><center><h1>PLAYER LIST</h1><hr color=black size=3><br>
+      <script language="JavaScript">
+      function show()
+      {
+          var dws,i,x,qwe,rty,lops;
+          lops=JSON.parse(localStorage.getItem("rlist"));
+          dws="<table border=2 cellspacing=0 cellpadding=10 width=600><tr><th><font size=6 color=red>Sr no.</font></th><th><font size=6 color=red>Player Name</font></th><th><font size=6 color=red>Rating</font></th></tr>";
+          for (i=0; i<lops.length; i++)
+          {
+	x=lops[i].split("_");
+                qwe="<td align=center><font size=5>"+x[1]+"</font></td>";
+                rty="<td align=center><font size=5>"+x[0]+"</font></td>";
+	dws=dws+"<tr><td align=center><font size=5>"+((+i)+(+1))+"</font></td>"+qwe+rty+"</tr>";
+          }
+          dws=dws+"</table>";
+          document.write(dws);
+      }
+      show()
+      </script></center>
+   </body>
+</html>

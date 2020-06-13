@@ -1,0 +1,17 @@
+<html>
+  <script language="JavaScript">
+    function resset()
+    {
+      localStorage.clear();
+      ralist=[];
+      localStorage.setItem("rlist", JSON.stringify(ralist));
+      alert("Data has been cleared");
+     }
+  </script>
+  <body>
+    <form name="f6">
+      <center><h1>CLEAR DATA</h1><hr color=black size=3><br>
+      <input type="submit" value="Clear" onClick="resset()"></center>
+    </form>
+  </body>
+</html>

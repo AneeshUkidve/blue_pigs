@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <script language="JavaScript">
+  function create()
+  {
+     var name,rating,lis,conc;
+     name=f1.t1.value;
+     rating=f1.t2.value;
+     conc=rating+"_"+name;
+     lis=JSON.parse(localStorage.getItem("rlist"));
+     lis.push(conc);
+     ralist=JSON.stringify(lis);
+     localStorage.setItem("rlist", ralist);
+     alert(name+" has been added");
+  }
+  </script>
+  <body>
+     <form name="f1">
+         <center><h1>NEW PLAYER</h1><hr color=black size=3><br><input type="text" name="t1" placeholder="Name Of Player"><br><br>
+         <input type="text" name="t2" placeholder="Rating"><br><br>
+         <input type="submit" value="Add" onClick=create()></center>
+      </form>
+  </body>
+</html>

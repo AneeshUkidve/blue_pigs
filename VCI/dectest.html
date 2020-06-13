@@ -1,0 +1,36 @@
+<html>
+  <script language="JavaScript">
+     arr=["23_a","23_b","100_c","333_d","123_e","1000_f","1_g","1_h"];
+     function hekk(aaa)
+     {
+         var aaa, bar, car, i, x, nu, na, j, k, l, m, n, v;
+         bar=[]
+         car=[]
+         
+         for (i=0; i<arr.length; i++)
+         {
+             x=parseInt(aaa[i]);
+             bar.push(x);
+         }
+         bar.sort(function(a, b){return b-a});
+         for (j=0; j<bar.length; j++)
+         {
+             k=bar[j];
+             for (l=0; l<arr.length; l++)
+             {
+                  m=aaa[l].split("_");
+                  n=parseInt(m[0]);
+                  if (n==k)
+                  {
+                      v=k+"_"+m[1];
+                      car.push(v);
+                      aaa.splice(l, 1);
+                      break;
+                  }
+             }
+         }
+         document.write(car);
+     }     
+     hekk(arr)
+  </script>
+</html>

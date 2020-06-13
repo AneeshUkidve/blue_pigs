@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <body>
+     <form name="f5">
+     <center>
+     <h1>DELETE PLAYER</h1><hr color=black size=3><br>
+     <font size=5>Player Name</font>
+         <script language="JavaScript">
+	function pil()
+          {
+             var stt,listt,i,p,pl,mid;
+             stt="<select name=nam>";
+             listt=JSON.parse(localStorage.getItem("rlist"));
+             for (i=0; i<listt.length; i++)
+             {
+                p=listt[i].split("_");
+                pl=p[1];
+	mid="<option>"+pl+"</option>";
+                stt=stt+mid;
+             }
+             stt=stt+"</select>"
+             document.write(stt);
+          }
+          pil()
+         </script><br><br>
+     <input type="submit" value="Delete" onClick=doit()></center>
+     </form>
+  </body>
+  <script language="JavaScript">
+    function doit()
+    {
+       var i,x,com,ls;
+       ls=JSON.parse(localStorage.getItem("rlist"))
+       for (i=0; i<ls.length; i++)
+       {
+           x=ls[i].split("_");
+           com=x[1];
+           if (com==f5.nam.value)
+           {
+               ls.splice(i,1);
+               localStorage.setItem("rlist", JSON.stringify(ls));
+           }
+       } 
+      alert(f5.nam.value+" has been deleted");
+    }
+    </script>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html> 
+  <body>
+     <form name="f2">
+         <center><h1>RATING MATCH</h1><hr color=black size=3><br>
+         <font size="5">White</font>
+         <script language="JavaScript">
+	function wh()
+          {
+             var stt,listt,i,p,pl,mid;
+             stt="<select name=w>";
+             listt=JSON.parse(localStorage.getItem("rlist"));
+             for (i=0; i<listt.length; i++)
+             {
+                p=listt[i].split("_");
+                pl=p[1];
+	mid="<option>"+pl+"</option>";
+                stt=stt+mid;
+             }
+             stt=stt+"</select>"
+             document.write(stt);
+          }
+          wh()
+
+         </script>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <font size="5">V/S</font>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+         <script language="JavaScript">
+	function bl()
+          {
+             var stt,listt,i,p,pl,mid;
+             stt="<select name=b>";
+             listt=JSON.parse(localStorage.getItem("rlist"));
+             for (i=0; i<listt.length; i++)
+             {
+                p=listt[i].split("_");
+                pl=p[1];
+	mid="<option>"+pl+"</option>";
+                stt=stt+mid;
+             }
+             stt=stt+"</select>"
+             document.write(stt);
+          }
+          bl()
+        </script>
+        <font size="5">Black</font><br><br>
+        <input type="radio" name="res" value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="res" value="0.5" checked>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="res" value="0">
+    <br>1-0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0-1
+    <br><br>
+    <input type="submit" value="update" onClick=ratcal()></center>
+    </form>
+  </body>
+  <script language="JavaScript">
+    function ratcal()
+    {
+      var r1,r2,re1,re2,e1,e2,nr1,nr2,i,com,x,lies,y1,y2,v1,v2;
+      r1=1;
+      r2=1;
+      lies=JSON.parse(localStorage.getItem("rlist"));
+      for (i=0; i<lies.length; i++)
+      {
+         x=lies[i].split("_");
+         com=x[1];
+         if (f2.w.value==com)
+         {
+            r1=parseInt(x[0]);
+            y1=i;
+         }  
+         if (f2.b.value==com)
+         {
+            r2=parseInt(x[0]);
+            y2=i;
+         }  
+      }
+      
+     re1=f2.res.value;
+     re2=1-re1;
+     e1=1/(1+(Math.pow(10,((r2-r1)/400))));
+     e2=1-e1;
+     nr1=Math.round((+r1)+(40*(re1-e1)));
+     nr2=Math.round((+r2)+(40*(re2-e2)));
+   
+
+     if (y1>y2)
+     {
+         lies.splice(y1,1);
+         lies.splice(y2,1);
+     }
+     else
+     {
+         lies.splice(y2,1);
+         lies.splice(y1,1);
+     }
+     v1=nr1+"_"+f2.w.value;    
+     v2=nr2+"_"+f2.b.value;     
+     lies.push(v1);
+     lies.push(v2);    
+     localStorage.setItem("rlist", JSON.stringify(lies));
+     alert("Ratings of "+f2.w.value+" and "+f2.b.value+" have been updated");      
+    }
+  </script>
+</html>
+  
